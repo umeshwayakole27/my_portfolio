@@ -1,0 +1,311 @@
+{
+  "personalInfo": {
+    "name": "John Doe",
+    "title": "Flutter & Android Developer",
+    "subtitle": "Cross-Platform Mobile Developer | Flutter Expert | Jetpack Compose Enthusiast",
+    "email": "john.doe@example.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "profileImage": "assets/images/profile.jpg",
+    "bio": "Passionate mobile developer with 3+ years of experience in Flutter and Android development. I specialize in creating cross-platform applications using Flutter and native Android apps using Jetpack Compose. With a strong foundation in modern development practices, I focus on building maintainable, scalable, and user-friendly applications."
+  },
+  "socialLinks": {
+    "linkedin": "https://linkedin.com/in/johndoe",
+    "github": "https://github.com/johndoe",
+    "twitter": "https://twitter.com/johndoe",
+    "portfolio": "https://johndoe.dev",
+    "medium": "https://medium.com/@johndoe",
+    "stackoverflow": "https://stackoverflow.com/users/12345/johndoe"
+  },
+  "skills": [
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "description": "Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.",
+      "iconPath": "assets/icons/flutter.png",
+      "category": "Cross-Platform",
+      "proficiencyLevel": 95,
+      "keywords": ["Dart", "Mobile Development", "Cross-Platform", "UI/UX", "Widgets"],
+      "color": "#02569B",
+      "url": "https://flutter.dev",
+      "isHighlighted": true,
+      "yearsOfExperience": 3,
+      "projects": ["ecommerce_app", "weather_app", "task_manager"]
+    },
+    {
+      "id": "dart",
+      "name": "Dart",
+      "description": "A client-optimized programming language for apps on multiple platforms.",
+      "iconPath": "assets/icons/dart.png",
+      "category": "Programming Language",
+      "proficiencyLevel": 90,
+      "keywords": ["Programming", "Object-Oriented", "Flutter", "Asynchronous"],
+      "color": "#0175C2",
+      "url": "https://dart.dev",
+      "isHighlighted": true,
+      "yearsOfExperience": 3,
+      "projects": ["ecommerce_app", "weather_app", "task_manager"]
+    },
+    {
+      "id": "android",
+      "name": "Android Development",
+      "description": "Native Android app development using Kotlin and Jetpack Compose.",
+      "iconPath": "assets/icons/android.png",
+      "category": "Mobile Development",
+      "proficiencyLevel": 85,
+      "keywords": ["Kotlin", "Java", "Jetpack Compose", "Material Design", "MVVM"],
+      "color": "#3DDC84",
+      "url": "https://developer.android.com",
+      "isHighlighted": true,
+      "yearsOfExperience": 2,
+      "projects": ["native_android_app"]
+    },
+    {
+      "id": "jetpack_compose",
+      "name": "Jetpack Compose",
+      "description": "Android's modern toolkit for building native UI with declarative programming.",
+      "iconPath": "assets/icons/jetpack_compose.png",
+      "category": "Android Framework",
+      "proficiencyLevel": 80,
+      "keywords": ["UI Toolkit", "Declarative UI", "Kotlin", "Material Design"],
+      "color": "#4285F4",
+      "url": "https://developer.android.com/jetpack/compose",
+      "isHighlighted": true,
+      "yearsOfExperience": 2,
+      "projects": ["native_android_app"]
+    },
+    {
+      "id": "kotlin",
+      "name": "Kotlin",
+      "description": "A cross-platform, statically typed programming language with type inference.",
+      "iconPath": "assets/icons/kotlin.png",
+      "category": "Programming Language",
+      "proficiencyLevel": 85,
+      "keywords": ["JVM", "Android", "Coroutines", "Null Safety"],
+      "color": "#7F52FF",
+      "url": "https://kotlinlang.org",
+      "isHighlighted": false,
+      "yearsOfExperience": 2,
+      "projects": ["native_android_app"]
+    },
+    {
+      "id": "firebase",
+      "name": "Firebase",
+      "description": "Google's platform for building and running successful apps with powerful backend services.",
+      "iconPath": "assets/icons/firebase.png",
+      "category": "Backend Services",
+      "proficiencyLevel": 75,
+      "keywords": ["Authentication", "Firestore", "Cloud Functions", "Analytics"],
+      "color": "#FFCA28",
+      "url": "https://firebase.google.com",
+      "isHighlighted": false,
+      "yearsOfExperience": 2,
+      "projects": ["ecommerce_app", "weather_app"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "ecommerce_app",
+      "title": "E-Commerce Mobile App",
+      "description": "A full-featured e-commerce mobile application built with Flutter and Firebase. The app includes user authentication, product catalog, shopping cart, order management, payment integration, and real-time notifications. Features a modern UI with smooth animations and offline support for better user experience.",
+      "shortDescription": "Full-featured e-commerce app with Flutter & Firebase",
+      "images": [
+        "assets/images/projects/ecommerce_1.jpg",
+        "assets/images/projects/ecommerce_2.jpg",
+        "assets/images/projects/ecommerce_3.jpg"
+      ],
+      "technologies": ["Flutter", "Dart", "Firebase", "Stripe", "Provider"],
+      "category": "Mobile App",
+      "status": "completed",
+      "startDate": "2023-01-15T00:00:00.000Z",
+      "endDate": "2023-04-20T00:00:00.000Z",
+      "githubUrl": "https://github.com/johndoe/ecommerce-app",
+      "playstoreUrl": "https://play.google.com/store/apps/details?id=com.johndoe.ecommerce",
+      "features": [
+        "User Authentication & Profiles",
+        "Product Catalog & Search",
+        "Shopping Cart & Wishlist",
+        "Secure Payment Processing",
+        "Order Tracking & History",
+        "Push Notifications",
+        "Offline Support",
+        "Multi-language Support"
+      ],
+      "challenges": [
+        "Implementing complex state management across multiple screens",
+        "Optimizing performance for large product catalogs",
+        "Handling offline data synchronization",
+        "Integrating secure payment processing"
+      ],
+      "isFeatured": true,
+      "order": 1,
+      "tags": ["Flutter", "Mobile", "E-commerce", "Firebase", "Payment"]
+    },
+    {
+      "id": "weather_app",
+      "title": "Weather Forecast App",
+      "description": "A beautiful and intuitive weather application built with Flutter and OpenWeatherMap API. The app provides current weather conditions, 7-day forecasts, weather maps, and severe weather alerts. Features a clean, animated interface with location-based services and customizable widgets.",
+      "shortDescription": "Beautiful weather app with animations and forecasts",
+      "images": [
+        "assets/images/projects/weather_1.jpg",
+        "assets/images/projects/weather_2.jpg",
+        "assets/images/projects/weather_3.jpg"
+      ],
+      "technologies": ["Flutter", "Dart", "REST API", "Lottie", "Geolocator"],
+      "category": "Mobile App",
+      "status": "completed",
+      "startDate": "2023-06-01T00:00:00.000Z",
+      "endDate": "2023-07-15T00:00:00.000Z",
+      "githubUrl": "https://github.com/johndoe/weather-app",
+      "liveUrl": "https://weather-app-demo.web.app",
+      "features": [
+        "Current Weather Conditions",
+        "7-Day Weather Forecast",
+        "Hourly Weather Updates",
+        "Multiple Location Support",
+        "Weather Maps & Radar",
+        "Severe Weather Alerts",
+        "Animated Weather Icons",
+        "Customizable Widgets"
+      ],
+      "challenges": [
+        "Creating smooth weather animations",
+        "Handling location permissions across platforms",
+        "Implementing efficient API caching strategy",
+        "Designing responsive layouts for various screen sizes"
+      ],
+      "isFeatured": true,
+      "order": 2,
+      "tags": ["Flutter", "Weather", "API", "Animation", "Location"]
+    },
+    {
+      "id": "task_manager",
+      "title": "Task Manager Pro",
+      "description": "A comprehensive task management application built with Flutter and Hive for local storage. The app helps users organize their daily tasks, set priorities, track progress, and maintain productivity. Features include categories, reminders, statistics, and data export.",
+      "shortDescription": "Productivity app for task management and organization",
+      "images": [
+        "assets/images/projects/task_1.jpg",
+        "assets/images/projects/task_2.jpg"
+      ],
+      "technologies": ["Flutter", "Dart", "Hive", "Local Notifications"],
+      "category": "Mobile App",
+      "status": "completed",
+      "startDate": "2023-08-10T00:00:00.000Z",
+      "endDate": "2023-09-25T00:00:00.000Z",
+      "githubUrl": "https://github.com/johndoe/task-manager",
+      "features": [
+        "Task Creation & Management",
+        "Priority & Category System",
+        "Reminder Notifications",
+        "Progress Statistics",
+        "Data Import/Export",
+        "Theme Customization"
+      ],
+      "challenges": [
+        "Implementing local notifications",
+        "Creating intuitive drag-and-drop interface",
+        "Optimizing local database performance"
+      ],
+      "isFeatured": false,
+      "order": 3,
+      "tags": ["Flutter", "Productivity", "Local Storage", "Notifications"]
+    }
+  ],
+  "experience": [
+    {
+      "id": "senior_flutter_dev",
+      "title": "Senior Flutter Developer",
+      "company": "Tech Solutions Inc.",
+      "description": "Leading Flutter development team in creating cross-platform mobile applications. Responsible for architecture decisions, code reviews, and mentoring junior developers. Successfully delivered 5+ production apps with 100K+ downloads.",
+      "startDate": "2022-03-01T00:00:00.000Z",
+      "location": "San Francisco, CA",
+      "type": "work",
+      "responsibilities": [
+        "Lead development of cross-platform mobile applications using Flutter",
+        "Architect scalable and maintainable code structures",
+        "Mentor junior developers and conduct code reviews",
+        "Collaborate with product managers and designers on feature requirements",
+        "Implement CI/CD pipelines for automated testing and deployment",
+        "Optimize app performance and ensure high-quality user experience"
+      ],
+      "achievements": [
+        "Reduced app crash rate by 85% through comprehensive testing strategies",
+        "Improved development velocity by 40% by implementing reusable components",
+        "Successfully migrated legacy codebase to Flutter 3.0",
+        "Led team of 6 developers on mission-critical projects",
+        "Achieved 4.8+ app store ratings across all published applications"
+      ],
+      "technologies": ["Flutter", "Dart", "Firebase", "REST APIs", "GraphQL", "Provider", "Riverpod", "Git", "CI/CD"],
+      "companyLogo": "assets/images/companies/tech_solutions.png",
+      "companyUrl": "https://techsolutions.com",
+      "isCurrentRole": true,
+      "department": "Mobile Development",
+      "employmentType": "fullTime",
+      "skills": ["Flutter Development", "Team Leadership", "Code Architecture", "Performance Optimization", "Mentoring"]
+    },
+    {
+      "id": "android_dev",
+      "title": "Android Developer",
+      "company": "Mobile Innovations Ltd.",
+      "description": "Developed native Android applications using Kotlin and Jetpack Compose. Worked on consumer-facing apps with focus on modern UI/UX and performance. Collaborated with cross-functional teams in an Agile environment.",
+      "startDate": "2020-08-15T00:00:00.000Z",
+      "endDate": "2022-02-28T00:00:00.000Z",
+      "location": "New York, NY",
+      "type": "work",
+      "responsibilities": [
+        "Develop native Android applications using Kotlin and Java",
+        "Implement modern UI patterns with Jetpack Compose",
+        "Integrate REST APIs and handle data persistence",
+        "Participate in Agile development processes and sprint planning",
+        "Write unit and integration tests to ensure code quality",
+        "Collaborate with designers to implement pixel-perfect UIs"
+      ],
+      "achievements": [
+        "Developed 3 successful Android apps with 50K+ downloads each",
+        "Migrated legacy Java codebase to Kotlin, reducing code by 30%",
+        "Implemented offline-first architecture improving user retention by 25%",
+        "Received \"Developer of the Quarter\" award for exceptional performance"
+      ],
+      "technologies": ["Android", "Kotlin", "Java", "Jetpack Compose", "Room", "Retrofit", "MVVM", "Dagger Hilt", "JUnit"],
+      "companyLogo": "assets/images/companies/mobile_innovations.png",
+      "companyUrl": "https://mobileinnovations.com",
+      "isCurrentRole": false,
+      "department": "Android Development",
+      "employmentType": "fullTime",
+      "skills": ["Android Development", "Kotlin Programming", "Jetpack Compose", "API Integration", "Testing"]
+    }
+  ],
+  "education": [
+    {
+      "id": "cs_degree",
+      "title": "Bachelor of Science in Computer Science",
+      "company": "University of Technology",
+      "description": "Comprehensive computer science program covering software engineering, algorithms, data structures, mobile development, and web technologies. Graduated Magna Cum Laude with focus on mobile application development.",
+      "startDate": "2016-08-20T00:00:00.000Z",
+      "endDate": "2020-05-15T00:00:00.000Z",
+      "location": "Boston, MA",
+      "type": "education",
+      "responsibilities": [
+        "Completed coursework in Data Structures and Algorithms",
+        "Studied Software Engineering principles and practices",
+        "Learned Mobile Application Development (Android & iOS)",
+        "Participated in team-based software projects",
+        "Conducted research on cross-platform development frameworks"
+      ],
+      "achievements": [
+        "Graduated Magna Cum Laude with 3.8 GPA",
+        "Dean's List for 6 consecutive semesters",
+        "Best Mobile App Award for final year project",
+        "President of Computer Science Student Association",
+        "Published research paper on Flutter performance optimization"
+      ],
+      "technologies": ["Java", "Python", "C++", "JavaScript", "SQL", "Android", "iOS", "React", "Node.js"],
+      "companyLogo": "assets/images/universities/university_tech.png",
+      "companyUrl": "https://universityoftech.edu",
+      "isCurrentRole": false,
+      "department": "Computer Science",
+      "employmentType": "fullTime",
+      "skills": ["Software Engineering", "Algorithm Design", "Mobile Development", "Research", "Leadership"]
+    }
+  ]
+}
