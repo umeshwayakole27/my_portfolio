@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../../core/utils/extensions.dart';
 
 import '../../../../core/router/app_router.dart';
@@ -55,39 +56,52 @@ class FeaturedProjectsSection extends StatelessWidget {
                 desktop: 3,
               );
 
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  // Calculate appropriate item width based on available space
-                  final itemWidth = context.isMobile
-                    ? constraints.maxWidth
-                    : (constraints.maxWidth - (crossAxisCount - 1) * 24) / crossAxisCount;
+              return AnimationLimiter(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    // Calculate appropriate item width based on available space
+                    final itemWidth = context.isMobile
+                        ? constraints.maxWidth
+                        : (constraints.maxWidth - (crossAxisCount - 1) * 24) /
+                            crossAxisCount;
 
-                  final aspectRatio = context.valueByScreen(
-                    mobile: itemWidth / 280,  // Fixed height for mobile
-                    tablet: itemWidth / 320,  // Fixed height for tablet
-                    desktop: itemWidth / 350, // Fixed height for desktop
-                  );
+                    final aspectRatio = context.valueByScreen(
+                      mobile: itemWidth / 280, // Fixed height for mobile
+                      tablet: itemWidth / 320, // Fixed height for tablet
+                      desktop: itemWidth / 350, // Fixed height for desktop
+                    );
 
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxisCount,
-                      crossAxisSpacing: context.isMobile ? 16 : 24,
-                      mainAxisSpacing: context.isMobile ? 16 : 24,
-                      childAspectRatio: aspectRatio,
-                    ),
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return _ProjectCard(
-                        title: _getProjectTitle(index),
-                        description: _getProjectDescription(index),
-                        technologies: _getProjectTechnologies(index),
-                        onTap: () => AppRouter.goToProjects(),
-                      );
-                    },
-                  );
-                },
+                    return GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        crossAxisSpacing: context.isMobile ? 16 : 24,
+                        mainAxisSpacing: context.isMobile ? 16 : 24,
+                        childAspectRatio: aspectRatio,
+                      ),
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return AnimationConfiguration.staggeredGrid(
+                          position: index,
+                          duration: const Duration(milliseconds: 500),
+                          columnCount: crossAxisCount,
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: _ProjectCard(
+                                title: _getProjectTitle(index),
+                                description: _getProjectDescription(index),
+                                technologies: _getProjectTechnologies(index),
+                                onTap: () => AppRouter.goToProjects(),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               );
             },
           ),

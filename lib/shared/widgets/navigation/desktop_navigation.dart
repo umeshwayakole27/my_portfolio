@@ -292,8 +292,29 @@ class _NavigationItem extends StatefulWidget {
   State<_NavigationItem> createState() => _NavigationItemState();
 }
 
-class _NavigationItemState extends State<_NavigationItem> {
+class _NavigationItemState extends State<_NavigationItem>
+    with SingleTickerProviderStateMixin {
   bool _isHovered = false;
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.05).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -303,34 +324,57 @@ class _NavigationItemState extends State<_NavigationItem> {
         vertical: 2,
       ),
       child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: widget.isSelected
-                ? context.colorScheme.primaryContainer
-                : _isHovered
-                ? context.colorScheme.surfaceContainerHighest
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
+        onEnter: (_) {
+          setState(() => _isHovered = true);
+          _controller.forward();
+        },
+        onExit: (_) {
+          setState(() => _isHovered = false);
+          _controller.reverse();
+        },
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) => Transform.scale(
+            scale: _scaleAnimation.value,
+            child: child,
           ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: widget.onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            decoration: BoxDecoration(
+              color: widget.isSelected
+                  ? context.colorScheme.primaryContainer
+                  : _isHovered
+                      ? context.colorScheme.surfaceContainerHighest
+                      : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
-              child: Container(
-                height: 48,
-                padding: EdgeInsets.symmetric(
-                  horizontal: widget.isCollapsed ? 0 : 16,
-                  vertical: 8,
-                ),
-                child: Row(
-                  children: [
-                    if (widget.isCollapsed)
-                      Expanded(
-                        child: Icon(
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: widget.onTap,
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  height: 48,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: widget.isCollapsed ? 0 : 16,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      if (widget.isCollapsed)
+                        Expanded(
+                          child: Icon(
+                            widget.isSelected
+                                ? widget.route.selectedIcon
+                                : widget.route.icon,
+                            size: 24,
+                            color: widget.isSelected
+                                ? context.colorScheme.onPrimaryContainer
+                                : context.colorScheme.onSurfaceVariant,
+                          ),
+                        )
+                      else ...[
+                        Icon(
                           widget.isSelected
                               ? widget.route.selectedIcon
                               : widget.route.icon,
@@ -339,33 +383,23 @@ class _NavigationItemState extends State<_NavigationItem> {
                               ? context.colorScheme.onPrimaryContainer
                               : context.colorScheme.onSurfaceVariant,
                         ),
-                      )
-                    else ...[
-                      Icon(
-                        widget.isSelected
-                            ? widget.route.selectedIcon
-                            : widget.route.icon,
-                        size: 24,
-                        color: widget.isSelected
-                            ? context.colorScheme.onPrimaryContainer
-                            : context.colorScheme.onSurfaceVariant,
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Text(
-                          widget.route.name,
-                          style: context.textTheme.bodyMedium?.copyWith(
-                            color: widget.isSelected
-                                ? context.colorScheme.onPrimaryContainer
-                                : context.colorScheme.onSurface,
-                            fontWeight: widget.isSelected
-                                ? FontWeight.w600
-                                : FontWeight.w500,
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Text(
+                            widget.route.name,
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              color: widget.isSelected
+                                  ? context.colorScheme.onPrimaryContainer
+                                  : context.colorScheme.onSurface,
+                              fontWeight: widget.isSelected
+                                  ? FontWeight.w600
+                                  : FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -395,8 +429,29 @@ class _SettingsItem extends StatefulWidget {
   State<_SettingsItem> createState() => _SettingsItemState();
 }
 
-class _SettingsItemState extends State<_SettingsItem> {
+class _SettingsItemState extends State<_SettingsItem>
+    with SingleTickerProviderStateMixin {
   bool _isHovered = false;
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.05).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -406,68 +461,81 @@ class _SettingsItemState extends State<_SettingsItem> {
         vertical: 2,
       ),
       child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: _isHovered
-                ? context.colorScheme.surfaceContainerHighest
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
+        onEnter: (_) {
+          setState(() => _isHovered = true);
+          _controller.forward();
+        },
+        onExit: (_) {
+          setState(() => _isHovered = false);
+          _controller.reverse();
+        },
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) => Transform.scale(
+            scale: _scaleAnimation.value,
+            child: child,
           ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: widget.onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            decoration: BoxDecoration(
+              color: _isHovered
+                  ? context.colorScheme.surfaceContainerHighest
+                  : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
-              child: Container(
-                height: 48,
-                padding: EdgeInsets.symmetric(
-                  horizontal: widget.isCollapsed ? 0 : 16,
-                  vertical: 8,
-                ),
-                child: Row(
-                  children: [
-                    if (widget.isCollapsed)
-                      Expanded(
-                        child: Icon(
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: widget.onTap,
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  height: 48,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: widget.isCollapsed ? 0 : 16,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      if (widget.isCollapsed)
+                        Expanded(
+                          child: Icon(
+                            widget.icon,
+                            size: 24,
+                            color: context.colorScheme.onSurfaceVariant,
+                          ),
+                        )
+                      else ...[
+                        Icon(
                           widget.icon,
                           size: 24,
                           color: context.colorScheme.onSurfaceVariant,
                         ),
-                      )
-                    else ...[
-                      Icon(
-                        widget.icon,
-                        size: 24,
-                        color: context.colorScheme.onSurfaceVariant,
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              widget.title,
-                              style: context.textTheme.bodyMedium?.copyWith(
-                                color: context.colorScheme.onSurface,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            if (widget.subtitle != null)
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
                               Text(
-                                widget.subtitle!,
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  color: context.colorScheme.onSurfaceVariant,
+                                widget.title,
+                                style: context.textTheme.bodyMedium?.copyWith(
+                                  color: context.colorScheme.onSurface,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                          ],
+                              if (widget.subtitle != null)
+                                Text(
+                                  widget.subtitle!,
+                                  style: context.textTheme.bodySmall?.copyWith(
+                                    color: context.colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),

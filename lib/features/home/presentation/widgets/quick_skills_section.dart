@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../../core/utils/extensions.dart';
 
 import '../../../../core/router/app_router.dart';
@@ -56,26 +57,39 @@ class QuickSkillsSection extends StatelessWidget {
               );
 
               // Calculate item width and height based on available space
-              final itemWidth = (constraints.maxWidth - (crossAxisCount - 1) * 16) / crossAxisCount;
+              final itemWidth =
+                  (constraints.maxWidth - (crossAxisCount - 1) * 16) /
+                      crossAxisCount;
               final itemHeight = context.isMobile ? 120.0 : 140.0;
               final aspectRatio = itemWidth / itemHeight;
 
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: aspectRatio.clamp(0.7, 1.2),
+              return AnimationLimiter(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    childAspectRatio: aspectRatio.clamp(0.7, 1.2),
+                  ),
+                  itemCount: 6,
+                  itemBuilder: (context, index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      duration: const Duration(milliseconds: 500),
+                      columnCount: crossAxisCount,
+                      child: ScaleAnimation(
+                        child: FadeInAnimation(
+                          child: _SkillCard(
+                            skill: _getSkillData(index),
+                            onTap: () => AppRouter.goToSkills(),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return _SkillCard(
-                    skill: _getSkillData(index),
-                    onTap: () => AppRouter.goToSkills(),
-                  );
-                },
               );
             },
           ),
