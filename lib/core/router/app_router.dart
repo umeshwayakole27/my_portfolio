@@ -37,7 +37,7 @@ class AppRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: const HomePage(),
-                transitionsBuilder: _slideTransitionBuilder,
+                transitionsBuilder: _fadeAndScaleTransitionBuilder,
               );
             },
           ),
@@ -48,7 +48,7 @@ class AppRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: const AboutPage(),
-                transitionsBuilder: _slideTransitionBuilder,
+                transitionsBuilder: _fadeAndScaleTransitionBuilder,
               );
             },
           ),
@@ -59,7 +59,7 @@ class AppRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: const SkillsPage(),
-                transitionsBuilder: _slideTransitionBuilder,
+                transitionsBuilder: _fadeAndScaleTransitionBuilder,
               );
             },
           ),
@@ -70,7 +70,7 @@ class AppRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: const ProjectsPage(),
-                transitionsBuilder: _slideTransitionBuilder,
+                transitionsBuilder: _fadeAndScaleTransitionBuilder,
               );
             },
           ),
@@ -81,7 +81,7 @@ class AppRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: const ExperiencePage(),
-                transitionsBuilder: _slideTransitionBuilder,
+                transitionsBuilder: _fadeAndScaleTransitionBuilder,
               );
             },
           ),
@@ -92,7 +92,7 @@ class AppRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: const ContactPage(),
-                transitionsBuilder: _slideTransitionBuilder,
+                transitionsBuilder: _fadeAndScaleTransitionBuilder,
               );
             },
           ),
@@ -209,23 +209,24 @@ class AppRouter {
       ];
 
   // Custom transition builder
-  static Widget _slideTransitionBuilder(
+  static Widget _fadeAndScaleTransitionBuilder(
     BuildContext context,
     Animation<double> animation,
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    const begin = Offset(1.0, 0.0);
-    const end = Offset.zero;
-    const curve = Curves.easeInOutCubic;
-
-    var tween = Tween(begin: begin, end: end).chain(
-      CurveTween(curve: curve),
+    final curve = CurvedAnimation(
+      parent: animation,
+      curve: Curves.easeInOutCubic,
+      reverseCurve: Curves.easeOutCubic,
     );
 
-    return SlideTransition(
-      position: animation.drive(tween),
-      child: child,
+    return FadeTransition(
+      opacity: curve,
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 0.95, end: 1.0).animate(curve),
+        child: child,
+      ),
     );
   }
 
