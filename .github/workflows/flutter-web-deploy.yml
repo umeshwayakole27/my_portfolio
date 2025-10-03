@@ -13,19 +13,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: List files in the repository
+        run: ls -R
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
+        working-directory: ./my_portfolio
 
       - name: Build Flutter Web
-        run: flutter build web --release
+        run: flutter build web --release --base-href /my_portfolio/
+        working-directory: ./my_portfolio
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: ./my_portfolio/build/web
